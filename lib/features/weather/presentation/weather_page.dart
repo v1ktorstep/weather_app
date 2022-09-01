@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/core/di/injectable.dart';
@@ -32,6 +34,8 @@ class WeatherPage extends StatelessWidget {
 class _Forecast extends StatelessWidget {
   final Forecast forecast;
 
+  final _jsonEncoder = const JsonEncoder.withIndent(' ');
+
   const _Forecast({
     Key? key,
     required this.forecast,
@@ -52,6 +56,8 @@ class _Forecast extends StatelessWidget {
           Text('timezone: ${forecast.timezone}'),
           Text('timezone_abbreviation: ${forecast.timezoneAbbreviation}'),
           Text('elevation: ${forecast.elevation}'),
+          Text(
+              'currentWeather: ${_jsonEncoder.convert(forecast.currentWeather)}')
         ],
       ),
     );

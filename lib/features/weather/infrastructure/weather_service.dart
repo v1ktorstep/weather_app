@@ -11,7 +11,7 @@ abstract class WeatherService {
   @factoryMethod
   factory WeatherService(Dio dio) = _WeatherService;
 
-  @GET('/forecast?hourly=temperature_2m')
+  @GET('/forecast?hourly=temperature_2m&current_weather=true&timezone=auto')
   Future<Forecast> getForecast(
     @Query('latitude') double latitude,
     @Query('longitude') double longitude,

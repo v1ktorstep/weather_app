@@ -14,12 +14,27 @@ class Forecast with _$Forecast {
     @JsonKey(name: 'timezone') String timezone,
     @JsonKey(name: 'timezone_abbreviation') String timezoneAbbreviation,
     @JsonKey(name: 'elevation') double elevation,
+    @JsonKey(name: 'current_weather') CurrentWeather currentWeather,
     @JsonKey(name: 'hourly_units') HourlyUnits hourlyUnits,
     @JsonKey(name: 'hourly') Hourly hourly,
   ) = _Forecast;
 
   factory Forecast.fromJson(Map<String, dynamic> json) =>
       _$ForecastFromJson(json);
+}
+
+@freezed
+class CurrentWeather with _$CurrentWeather {
+  const factory CurrentWeather(
+    @JsonKey(name: 'temperature') double temperature,
+    @JsonKey(name: 'windspeed') double windspeed,
+    @JsonKey(name: 'winddirection') double winddirection,
+    @JsonKey(name: 'weathercode') double weathercode,
+    @JsonKey(name: 'time') String time,
+  ) = _CurrentWeather;
+
+  factory CurrentWeather.fromJson(Map<String, dynamic> json) =>
+      _$CurrentWeatherFromJson(json);
 }
 
 @freezed
