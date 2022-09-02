@@ -22,7 +22,9 @@ class WeatherPage extends StatelessWidget {
                 child: CircularProgressIndicator(),
               ),
               loaded: (forecast) => _Forecast(forecast: forecast),
-              error: (errorMessage) => Container(),
+              error: (errorMessage) => _ErrorMessage(
+                errorMessage: errorMessage,
+              ),
             );
           },
         ),
@@ -58,6 +60,34 @@ class _Forecast extends StatelessWidget {
           Text('elevation: ${forecast.elevation}'),
           Text(
               'currentWeather: ${_jsonEncoder.convert(forecast.currentWeather)}')
+        ],
+      ),
+    );
+  }
+}
+
+class _ErrorMessage extends StatelessWidget {
+  final String errorMessage;
+
+  const _ErrorMessage({
+    Key? key,
+    required this.errorMessage,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(errorMessage),
+          const SizedBox(height: 8),
+          IconButton(
+            onPressed: () {
+              context.read<WeatherCubit>().loadForecast();
+            },
+            icon: const Icon(Icons.refresh),
+          ),
         ],
       ),
     );

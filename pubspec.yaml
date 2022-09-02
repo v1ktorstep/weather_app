@@ -22,6 +22,8 @@ dependencies:
   auto_route: ^5.0.1
   get_it: ^7.2.0
   injectable: ^1.5.3
+  connectivity_plus: ^2.3.6+1
+  geolocator: ^9.0.1
 
 dev_dependencies:
   flutter_test:
